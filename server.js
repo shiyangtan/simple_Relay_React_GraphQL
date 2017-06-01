@@ -3,7 +3,7 @@ var app = express()
 var graphqlHTTP = require('express-graphql');
 var path = require('path')
 var schema = require('./graphql/schema.js');
-
+var Relay = require('react-relay');
 
 
 // --- test
@@ -32,6 +32,9 @@ app.get('/', function(req, res) {
 })
 
 // handle GraphQL request
+Relay.injectNetworkLayer(
+  new Relay.DefaultNetworkLayer("http://localhost:3000/graphql")
+);
 app.use('/graphql', graphqlHTTP({
   schema: schema,
 

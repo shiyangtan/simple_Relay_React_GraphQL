@@ -1,10 +1,17 @@
+// import 'babel-polyfill';
+//
+import Cities from './component.js';
+import HomeRoute from './route.js';
 import React from 'react';
-import {render} from 'react-dom';
+import ReactDOM from 'react-dom';
+import Relay from 'react-relay';
 
-class App extends React.Component {
-  render () {
-    return <p> Hello React!</p>;
-  }
-}
 
-render(<App/>, document.getElementById('app'));
+
+ReactDOM.render(
+  <Relay.RootContainer
+    Component={Cities}
+    route={new HomeRoute()}
+  />,
+  document.getElementById('root')
+);

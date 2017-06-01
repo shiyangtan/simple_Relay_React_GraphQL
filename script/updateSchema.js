@@ -19,7 +19,7 @@ graphql(schema, introspectionQuery).then(result => {
 
 var fs = require('fs');
 var path = require('path');
-var Schema = require('../graphql/schema.js'); // update this to the path of your schema.js
+var Schema = require('../graphql/test.js'); // update this to the path of your schema.js
 var {graphql} = require('graphql');
 var {introspectionQuery} = require('graphql/utilities');
 

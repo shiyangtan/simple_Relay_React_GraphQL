@@ -12,7 +12,7 @@ var {GraphQLString} = require('graphql');
 var query = require('../mysql/query.js');
 
 
-// attributes of city
+// Table 'cities' in MySQL
 let CityType = new GraphQLObjectType({
   name: 'City',
   fields: () => ({
@@ -22,38 +22,31 @@ let CityType = new GraphQLObjectType({
   }),
 });
 
-// a list of cities
-let CityListType = new GraphQLObjectType({
-  name: 'CityList',
-  fields: () => ({
-    city_list: {
-      type: new GraphQLList(CityType),
-      resolve: (city_search) => {
-        return city_search
-      }
-    }
-  }),
-});
+// what can we query from the table?
 
+// we can search for a list of cities
+let city_search = () => ({
+
+  description: 'Get a list of city using search term',
+  type: new GraphQLList(CityType),
+  args: {
+    search_term: {type: GraphQLString},
+  },
+  resolve: (_, {search_term}) => {
+      return query(search_term).then((results) => {
+        console.log("SQL said " + results);
+        return results;
+      }).catch((error) => {
+        console.log(error);
+      });
+  },
+});
 
 // root query
 let RootQuery = new GraphQLObjectType({
   name: 'RootQuery',
   fields: () => ({
-    city_search: {
-      type: CityListType,
-      args: {
-        search_term: {type: GraphQLString},
-      },
-      resolve: (_, {search_term}) => {
-          return query(search_term).then((results) => {
-            console.log("SQL said " + results);
-            return results;
-          }).catch((error) => {
-            console.log(error);
-          });
-      },
-    }
+    city_search: city_search()
   }),
 });
 

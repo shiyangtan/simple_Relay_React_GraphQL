@@ -14,7 +14,7 @@
           "fields": [
             {
               "name": "city_search",
-              "description": "Get a list of city using search term",
+              "description": null,
               "args": [
                 {
                   "name": "search_term",
@@ -28,13 +28,9 @@
                 }
               ],
               "type": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "OBJECT",
-                  "name": "City",
-                  "ofType": null
-                }
+                "kind": "OBJECT",
+                "name": "CityList",
+                "ofType": null
               },
               "isDeprecated": false,
               "deprecationReason": null
@@ -52,6 +48,33 @@
           "fields": null,
           "inputFields": null,
           "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "CityList",
+          "description": null,
+          "fields": [
+            {
+              "name": "city_list",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "City",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
           "enumValues": null,
           "possibleTypes": null
         },
